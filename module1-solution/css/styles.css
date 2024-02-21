@@ -1,0 +1,19 @@
+.message {
+  font-size: 1.3em;
+  font-weight: bold;
+  font-family: fantasy;
+}
+
+h1
+{
+    font-family: monospace;
+    font-weight: bold;
+    
+}
+
+.btn
+{
+    background-color: aqua;
+    border-radius: 10%;
+    font-weight: bold;
+}
