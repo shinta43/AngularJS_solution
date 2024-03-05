@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shopping List Check Off</title>
+    <meta name="description" content="Shopping List Check Off" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="ShoppingListCheckOff">
+    <div class="container">
+      <div class="row">
+        <!-- To Buy List -->
+        <div class="col-sm-6" ng-controller="ToBuyShoppingController as buyList">
+          <h2>To Buy:</h2>
+          <hr />
+          <div class="panel panel-default" ng-class="{'panel-danger': !buyList.items.length }">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item clearfix" ng-repeat="item in buyList.items">
+                  <span>Buy {{item.quantity}} {{item.name}}</span>
+                  <button class="btn btn-default btn-xs pull-right" ng-click="buyList.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button>
+                </li>
+              </ul>
+              <div class="emptyMessage" ng-if="!buyList.items.length">Everything is bought!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Already Bought List -->
+        <div class="col-sm-6" ng-controller="AlreadyBoughtShoppingController as boughtList">
+          <h2>Already Bought:</h2>
+          <hr />
+          <div class="panel panel-default" ng-class="{ 'panel-danger': !boughtList.items.length, 'panel-success': boughtList.finishedShopping() }">
+            <div class="panel-body">
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in boughtList.items ">
+                  <span>Bought {{item.quantity}} {{item.name}}</span>
+                  <span class="glyphicon glyphicon-ok pull-right green"></span>
+                </li>
+              </ul>
+              <div class="emptyMessage" ng-if="!boughtList.items.length">Nothing bought yet.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
